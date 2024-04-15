@@ -138,7 +138,6 @@ data_list = ["manaCost", "colors", "type", "text"]
 print(f'data for {card_name} is:')
 for data in data_list:
     print(f'    {data}:\t{json_object["cards"][0][data]}')
-
 ```
 ## json-http-requests-name-list.bat
 ```
