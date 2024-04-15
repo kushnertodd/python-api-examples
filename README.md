@@ -61,7 +61,7 @@ with open(sys.argv[1], 'r') as json_file:
 print(json_object["types"])
 ```
 
-    - json-parse.bat
+json-parse.bat
 
 ```
 curl "https://api.magicthegathering.io/v1/types">types.txt
