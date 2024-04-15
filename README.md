@@ -14,7 +14,7 @@ C:>curl "https://api.magicthegathering.io/v1/types"
 - How do I parse  that file into human-readable form using python? I'm glad you asked. Make sure you have python installed from https://www.python.org and run `json-format.bat` in dos.
 
 
-  - json-format.py
+json-format.py
 
 ```
 import sys
@@ -36,7 +36,7 @@ print(json.dumps(json_object))
 print(json.dumps(json_object, indent=1))
 ```
 
-  - json-format.bat
+json-format.bat
 
 ```
 curl "https://api.magicthegathering.io/v1/types">types.txt
@@ -46,7 +46,7 @@ python json-format.py types.txt
 ```
 - Now you're going to say How do I parse that into data in a usable python form? I'm glad you asked that too. The json is actually loaded into a dictionary that has "types" as the key and the list of types as the value. `json-parse.bat` strips the "types" off the json and just prints the list of types. 
 
-  - json-parse.py
+json-parse.py
 ```
 import sys
 import json
@@ -70,7 +70,7 @@ python json-parse.py types.txt
 ```
 - Now you're going to say Sure, that's fine if I want to get  a fixed set of data from a json request, but suppose I want to specify the thing to get the json for and print out a specific set of data for that thing? `json-http-requests-name.bat` will get the mana cost for a card you specify.
 
-  - json-http-requests-name.py
+json-http-requests-name.py
 ```
 import sys
 import json
@@ -90,7 +90,7 @@ json_object = json.loads(res.text)
 print(f'mana cost for {card_name} is:\n{json_object["cards"][0]["manaCost"]}')
 ```
 
-  - json-http-requests-name.bat
+json-http-requests-name.bat
 
 ```
 python json-http-requests-name.py "'Cho-Manno, Revolutionary'"
@@ -126,7 +126,7 @@ print(f'supertype for {card_name} is:\n{json_object["cards"][0]["supertypes"]}')
 - You can get data for a list of fields with `json-http-requests-name-list.bat`.
 
 
-  - json-http-requests-name-list.py
+json-http-requests-name-list.py
 
 ```
 import sys
@@ -150,7 +150,7 @@ for data in data_list:
     print(f'    {data}:\t{json_object["cards"][0][data]}')
 ```
 
-  - json-http-requests-name-list.bat
+json-http-requests-name-list.bat
 
 ```
 python json-http-requests-name-list.py "'Cho-Manno, Revolutionary'
@@ -161,7 +161,7 @@ https://api.magicthegathering.io/v1/types
 ```
 
 
-  - json-http-requests.py
+json-http-requests.py
 
 ```
 import sys
@@ -179,7 +179,7 @@ json_object = json.loads(res.text)
 print(f'parsed json for "types" is:\n{json_object["types"]}')
 ```
 
-  - json-http-requests.bat
+json-http-requests.bat
 
 ```
 python json-http-requests.py
