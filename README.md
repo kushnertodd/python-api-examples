@@ -40,7 +40,7 @@ type types.txt
 python json-format.py
 python json-format.py types.txt
 ```
-- Now you're going to say How do I parse that into data in a usable python form? I'm glad you asked that too. The json is actually loaded into a dictionary that has "types" as the key and the list of types as the value . json-parse.bat strips the "types" off the json and just prints the list of types. Let me know what you think.
+- Now you're going to say How do I parse that into data in a usable python form? I'm glad you asked that too. The json is actually loaded into a dictionary that has "types" as the key and the list of types as the value. json-parse.bat strips the "types" off the json and just prints the list of types. 
 
 json-parse.py
 ```
@@ -86,11 +86,6 @@ print(f'mana cost for {card_name} is:\n{json_object["cards"][0]["manaCost"]}')
 json-http-requests-name.bat
 ```
 python json-http-requests-name.py "'Cho-Manno, Revolutionary'"
-```
-json-http-requests.bat
-
-```
-python json-http-requests.py
 ```
 - You want to know what kind of data you can get for a specific card? You can capture all the request json with this command:
 ```
