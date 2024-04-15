@@ -12,6 +12,7 @@ To run them:
 Then download the example files from DOS using:
 ```
 C:>git clone https://github.com/kushnertodd/python-api-examples
+C:>cd python-api-examples
 ```
 You should be able to type this in DOS and get the card types:
 ```
