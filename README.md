@@ -1,18 +1,24 @@
 # Python API Examples
 
-These examples are also [here](https://github.com/kushnertodd/python-api-examples).
-
 Here is something that's interesting and educational! Have you used JSON? Magic has an API that gives Magic information when you send JSON requests that's described at this site:
 ```
 https://docs.magicthegathering.io/
+```
+These are examples of using Python to read JSON from web APIs and process it.
+To run them:
+-  first download and install [git](https://git-scm.com/downloads) for Windows.
+- then download [python](https://www.python.org) for Windows and install it
+
+Then download the example files from DOS using:
+```
+C:>git clone https://github.com/kushnertodd/python-api-examples
 ```
 You should be able to type this in DOS and get the card types:
 ```
 C:>curl "https://api.magicthegathering.io/v1/types"
 {"types":["Artifact","Battle","Conspiracy","Creature","Dragon","Elemental","Enchantment","Goblin","Hero","instant","Instant","Jaguar","Knights","Land","Phenomenon","Plane","Planeswalker","Scheme","Sorcery","Stickers","Summon","Tribal","Universewalker","Vanguard","Wolf"]}
 ```
-- How do I parse  that file into human-readable form using python? I'm glad you asked. Make sure you have python installed from https://www.python.org and run `json-format.bat` in dos.
-
+- How do I parse that file into human-readable form using python? I'm glad you asked. Run `json-format.bat` in dos.
 
 json-format.py
 
@@ -47,6 +53,7 @@ python json-format.py types.txt
 - Now you're going to say How do I parse that into data in a usable python form? I'm glad you asked that too. The json is actually loaded into a dictionary that has "types" as the key and the list of types as the value. `json-parse.bat` strips the "types" off the json and just prints the list of types. 
 
 json-parse.py
+
 ```
 import sys
 import json
@@ -140,7 +147,6 @@ if len(sys.argv) < 2:
 card_name = sys.argv[1]
 
 res = requests.get('https://api.magicthegathering.io/v1/cards?supertypes=legendary&types=creature')
-#print(f'original api response is:\n{res.text}\n')
 
 json_object = json.loads(res.text)
 
@@ -159,7 +165,7 @@ python json-http-requests-name-list.py "'Cho-Manno, Revolutionary'
 ```
 https://api.magicthegathering.io/v1/types
 ```
-
+- You can parse the results of running the `curl` command from python using `json-http-requests.bat`.
 
 json-http-requests.py
 
