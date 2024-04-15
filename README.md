@@ -6,21 +6,32 @@ Here is something that's interesting and educational! Have you used JSON? Magic 
 ```
 https://docs.magicthegathering.io/
 ```
-You should be able to type this at DOS and get the card types:
+You should be able to type this in DOS and get the card types:
 ```
 C:>curl "https://api.magicthegathering.io/v1/types"
 {"types":["Artifact","Battle","Conspiracy","Creature","Dragon","Elemental","Enchantment","Goblin","Hero","instant","Instant","Jaguar","Knights","Land","Phenomenon","Plane","Planeswalker","Scheme","Sorcery","Stickers","Summon","Tribal","Universewalker","Vanguard","Wolf"]}
 ```
 - How do I parse  that file into human-readable form using python? I'm glad you asked. Make sure you have python installed from https://www.python.org and run json-format.bat in dos.
-```
-json-format.py
 
+json-format.py
+```
 import sys
 import json
 
 if len(sys.argv) < 2:
     print(f'usage: {sys.argv[0]} filename')
     sys.exit(0)	
+
+print(f'formatted json in {sys.argv[1]}:')
+
+with open(sys.argv[1], 'r') as json_file:
+    json_object = json.load(json_file)
+
+print(json_object)
+
+print(json.dumps(json_object))
+
+print(json.dumps(json_object, indent=1))
 ```
 json-format.bat
 ```
@@ -39,6 +50,11 @@ import json
 if len(sys.argv) < 2:
     print(f'usage: {sys.argv[0]} filename')
     sys.exit(0)	
+
+with open(sys.argv[1], 'r') as json_file:
+    json_object = json.load(json_file)
+
+print(json_object["types"])
 ```
 json-parse.bat
 ```
@@ -56,19 +72,34 @@ import requests
 
 if len(sys.argv) < 2:
     print(f'usage: {sys.argv[0]} card-name')
+    sys.exit(0)	
+
+card_name = sys.argv[1]
+
+res = requests.get('https://api.magicthegathering.io/v1/cards?supertypes=legendary&types=creature')
+#print(f'original api response is:\n{res.text}\n')
+
+json_object = json.loads(res.text)
+
+print(f'mana cost for {card_name} is:\n{json_object["cards"][0]["manaCost"]}')
 ```
 json-http-requests-name.bat
 ```
 python json-http-requests-name.py "'Cho-Manno, Revolutionary'"
 ```
 json-http-requests.bat
+
 ```
-python json-http-requests-name.py "'Cho-Manno, Revolutionary'"
+python json-http-requests.py
 ```
 - You want to know what kind of data you can get for a specific card? You can capture all the request json with this command:
+```
 C:>curl "https://api.magicthegathering.io/v1/cards?supertypes=legendary&types=creature">card.txt
+```
 and copy and paste that text into this web page:
+```
 https://jsonformatter.org/
+```
 and it will show the information for "Cho-Manna, Revolutionary" as the first entry:
 ```
 {
@@ -99,14 +130,21 @@ import requests
 
 if len(sys.argv) < 2:
     print(f'usage: {sys.argv[0]} card-name')
+    sys.exit(0)	
+
+card_name = sys.argv[1]
+
+res = requests.get('https://api.magicthegathering.io/v1/cards?supertypes=legendary&types=creature')
+#print(f'original api response is:\n{res.text}\n')
+
+json_object = json.loads(res.text)
+
+data_list = ["manaCost", "colors", "type", "text"]
+print(f'data for {card_name} is:')
+for data in data_list:
+    print(f'    {data}:\t{json_object["cards"][0][data]}')
+
 ```
-import sys
-import json
-import requests
-
-if len(sys.argv) < 2:
-    print(f'usage: {sys.argv[0]} card-name')
-
 json-http-requests-name-list.bat
 ```
 python json-http-requests-name-list.py "'Cho-Manno, Revolutionary'
@@ -135,4 +173,4 @@ print(f'parsed json for "types" is:\n{json_object["types"]}')
 json-http-requests.bat
 ```
 python json-http-requests.py
-
+```
