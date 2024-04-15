@@ -13,7 +13,9 @@ C:>curl "https://api.magicthegathering.io/v1/types"
 ```
 - How do I parse  that file into human-readable form using python? I'm glad you asked. Make sure you have python installed from https://www.python.org and run `json-format.bat` in dos.
 
+
   - json-format.py
+
 ```
 import sys
 import json
@@ -33,7 +35,9 @@ print(json.dumps(json_object))
 
 print(json.dumps(json_object, indent=1))
 ```
+
   - json-format.bat
+
 ```
 curl "https://api.magicthegathering.io/v1/types">types.txt
 type types.txt
@@ -56,7 +60,9 @@ with open(sys.argv[1], 'r') as json_file:
 
 print(json_object["types"])
 ```
+
   - json-parse.bat
+
 ```
 curl "https://api.magicthegathering.io/v1/types">types.txt
 type types.txt
@@ -83,7 +89,9 @@ json_object = json.loads(res.text)
 
 print(f'mana cost for {card_name} is:\n{json_object["cards"][0]["manaCost"]}')
 ```
+
   - json-http-requests-name.bat
+
 ```
 python json-http-requests-name.py "'Cho-Manno, Revolutionary'"
 ```
@@ -117,7 +125,9 @@ print(f'supertype for {card_name} is:\n{json_object["cards"][0]["supertypes"]}')
 ```
 - You can get data for a list of fields with `json-http-requests-name-list.bat`.
 
+
   - json-http-requests-name-list.py
+
 ```
 import sys
 import json
@@ -139,7 +149,9 @@ print(f'data for {card_name} is:')
 for data in data_list:
     print(f'    {data}:\t{json_object["cards"][0][data]}')
 ```
+
   - json-http-requests-name-list.bat
+
 ```
 python json-http-requests-name-list.py "'Cho-Manno, Revolutionary'
 ```
@@ -148,7 +160,9 @@ python json-http-requests-name-list.py "'Cho-Manno, Revolutionary'
 https://api.magicthegathering.io/v1/types
 ```
 
+
   - json-http-requests.py
+
 ```
 import sys
 import json
@@ -164,7 +178,9 @@ json_object = json.loads(res.text)
 
 print(f'parsed json for "types" is:\n{json_object["types"]}')
 ```
+
   - json-http-requests.bat
+
 ```
 python json-http-requests.py
 ```
